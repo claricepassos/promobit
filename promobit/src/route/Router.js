@@ -9,7 +9,7 @@ export const Router = () => {
 <BrowserRouter>
 <Switch>
 
-  <Route exact path={"/movies/"}>      
+  <Route exact path={"/"}>      
     <GetAllMovies />
   </Route>
 

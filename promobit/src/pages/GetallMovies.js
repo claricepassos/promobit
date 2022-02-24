@@ -36,8 +36,12 @@ export const GetAllMovies = () => {
             })
     }
 
-    const handlePageChange = () =>{
+    const handlePageChangeIncrement = () =>{
         setPage(page + 1)
+    }
+
+    const handlePageChangeDecrement = () =>{
+        setPage(page - 1)
     }
 
 
@@ -64,7 +68,8 @@ export const GetAllMovies = () => {
 
     return (
         <div>
-            <button onClick={()=>handlePageChange(page)}>Mudar de página</button>
+            <button onClick={()=>handlePageChangeIncrement(page)}>Ir para a próxima página</button>
+            <button onClick={()=>handlePageChangeDecrement(page)}>Ir para a página anteior</button>
             <MovieCard>{renderMovies}</MovieCard>
         </div>
     )
