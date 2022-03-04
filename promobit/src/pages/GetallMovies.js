@@ -79,7 +79,7 @@ export const GetAllMovies = () => {
         const names = ids.map(id => {
             const namedGenre = gender.genres.find(namedGenre => namedGenre.id === id);
             console.log(namedGenre)
-            console.log('imprime'id)
+            console.log('imprime', id)
             return namedGenre.name;
         });
         return names;
