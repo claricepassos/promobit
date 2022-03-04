@@ -20,10 +20,28 @@ img{
 `
 
 export const GetAllMovies = () => {
-
     const [movies, setMovies] = useState([])
-
     let [page, setPage] = useState(1)
+    const [gender, setGender] = useState([])
+
+    console.log(gender)
+
+    const getGenders = () => {
+        axios
+            .get(`
+            https://api.themoviedb.org/3/genre/movie/list?api_key=0eea3eb3c8fbe9525011d7bc4400e0b6&language=en-US
+            `)
+            .then((res) => {
+                setGender(res.data.genres)
+            }).catch((err) => {
+                console.log("Erro", err.response)
+            });
+    }
+
+    useEffect(() => {
+        getGenders()
+    }, [])
+
 
     const getMovies = () => {
         axios
@@ -36,16 +54,16 @@ export const GetAllMovies = () => {
             })
     }
 
-    const handlePageChangeIncrement = () =>{
+    const handlePageChangeIncrement = () => {
         setPage(page + 1)
     }
 
-    const handlePageChangeDecrement = () =>{
+    const handlePageChangeDecrement = () => {
         setPage(page - 1)
     }
 
 
-   useEffect(() => {
+    useEffect(() => {
         getMovies()
     }, [page])
 
@@ -55,21 +73,36 @@ export const GetAllMovies = () => {
         goToDetailPage(history, id)
     }
 
-    
-    const renderMovies = movies && movies.map((i) => {
+
+
+    const mapGenreIdsToNames = (ids) => {
+        const names = ids.map(id => {
+            const namedGenre = gender.genres.find(namedGenre => namedGenre.id === id);
+            console.log(namedGenre)
+            console.log('imprime'id)
+            return namedGenre.name;
+        });
+        return names;
+    }
+
+
+
+
+    const renderMovies = movies && movies.map((i)  => {
         return (
 
             <div onClick={() => clickCard(i.id)}>
                 <img src={`https://image.tmdb.org/t/p/w500/${i.poster_path}`} />
                 <p>{i.original_title}</p>
+          {/*       <p>{mapGenreIdsToNames(i.genre_ids)}</p> */}
             </div>
         )
     })
 
     return (
         <div>
-            <button onClick={()=>handlePageChangeIncrement(page)}>Ir para a próxima página</button>
-            <button onClick={()=>handlePageChangeDecrement(page)}>Ir para a página anteior</button>
+            <button onClick={() => handlePageChangeIncrement(page)}>Ir para a próxima página</button>
+            <button onClick={() => handlePageChangeDecrement(page)}>Ir para a página anteior</button>
             <MovieCard>{renderMovies}</MovieCard>
         </div>
     )

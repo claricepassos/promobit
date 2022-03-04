@@ -1,4 +1,4 @@
-import react, { useEffect, useState } from 'react'
+/* import react, { useEffect, useState } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 
@@ -19,7 +19,6 @@ font-size: 50px;
 `
 
 export const GetMovieList = () => {
-
     const [gender, setGender] = useState([])
 
     const getGenders = () => {
@@ -38,9 +37,24 @@ export const GetMovieList = () => {
         getGenders()
     }, [])
 
-    const renderMovieGenderList = gender && gender.map((i)=>{
-        return(<div key={i.id}>{i.name}</div>)
-    })
+    const mapGenreIdsToNames = (ids) => {
+        const names = ids.map(id => {
+            const namedGenre = gender.genres.find(namedGenre => namedGenre.id === id);
+            return namedGenre.name;
+        });
+        return names;
+    }
+
+    const onChangeCheckbox = (id) => {
+        const newGenres = genres.map(genre => {
+            if(genre.id == id) {
+                return genre.selected ? 
+                    { ...genre, selected: false } : { ...genre, selected: true };
+            }
+            return genre;
+        });
+        setGenres(newGenres);
+    }
 
     return(
         <Conteiner>
@@ -49,4 +63,4 @@ export const GetMovieList = () => {
         </Conteiner>
     )
 
-}
+} */
