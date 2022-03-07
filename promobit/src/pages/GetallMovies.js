@@ -4,11 +4,12 @@ import axios from 'axios'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom';
 import { goToDetailPage } from '../route/Coordinator';
+import moment from 'moment';
 
 
 const MovieCard = styled.div`
 display: grid;
-margin-top: 25px;
+margin-top: -10px;
 margin-left: 35px;
 margin-right: auto;
 padding: 10px;
@@ -16,31 +17,34 @@ grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 img{
     height: 300px;
     border: solid black;
-}
+};
+
 `
+
+ const CardVote = styled.div`
+    width: 50px;
+    height: 50px;
+    position: relative;
+    margin-left: 170px;
+    margin-top: -40px;
+    text-align: center;
+    justify-content: center;
+    background-color: mintcream;
+    color: black;
+    font-weight: 600;
+    border-radius: 50%;
+    display: flex;
+    flex-wrap: wrap;`
 
 export const GetAllMovies = () => {
     const [movies, setMovies] = useState([])
+
     let [page, setPage] = useState(1)
+
     const [gender, setGender] = useState([])
 
-    console.log(gender)
+    const history = useHistory()
 
-    const getGenders = () => {
-        axios
-            .get(`
-            https://api.themoviedb.org/3/genre/movie/list?api_key=0eea3eb3c8fbe9525011d7bc4400e0b6&language=en-US
-            `)
-            .then((res) => {
-                setGender(res.data.genres)
-            }).catch((err) => {
-                console.log("Erro", err.response)
-            });
-    }
-
-    useEffect(() => {
-        getGenders()
-    }, [])
 
 
     const getMovies = () => {
@@ -67,34 +71,31 @@ export const GetAllMovies = () => {
         getMovies()
     }, [page])
 
-    const history = useHistory()
 
     const clickCard = (id) => {
         goToDetailPage(history, id)
     }
-
-
-
-    const mapGenreIdsToNames = (ids) => {
-        const names = ids.map(id => {
-            const namedGenre = gender.genres.find(namedGenre => namedGenre.id === id);
-            console.log(namedGenre)
-            console.log('imprime', id)
-            return namedGenre.name;
-        });
-        return names;
+    const getGenders = () => {
+        axios
+            .get(`
+            https://api.themoviedb.org/3/genre/movie/list?api_key=0eea3eb3c8fbe9525011d7bc4400e0b6
+            `)
+            .then((res) => {
+                setGender(res.data.genres)
+            }).catch((err) => {
+                console.log("Erro", err.response)
+            });
     }
 
 
-
-
-    const renderMovies = movies && movies.map((i)  => {
+    const renderMovies = movies && movies.map((i) => {
         return (
 
             <div onClick={() => clickCard(i.id)}>
                 <img src={`https://image.tmdb.org/t/p/w500/${i.poster_path}`} />
+                <CardVote><p>{i.vote_average}</p></CardVote>
                 <p>{i.original_title}</p>
-          {/*       <p>{mapGenreIdsToNames(i.genre_ids)}</p> */}
+                <p><b>Data de Lançamento:</b> {moment(`${i.release_date}`).format("DD/MM/YYYY")}</p>
             </div>
         )
     })
@@ -103,7 +104,8 @@ export const GetAllMovies = () => {
         <div>
             <button onClick={() => handlePageChangeIncrement(page)}>Ir para a próxima página</button>
             <button onClick={() => handlePageChangeDecrement(page)}>Ir para a página anteior</button>
-            <MovieCard>{renderMovies}</MovieCard>
+            <MovieCard>{renderMovies}
+            </MovieCard>
         </div>
     )
 }

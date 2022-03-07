@@ -6,5 +6,5 @@ export const goToDetailPage = (history, id) =>{
 }
 
 export const goToMoviePage = (history) =>{
-    history.push ("/movies")
+    history.push ("/")
 }
