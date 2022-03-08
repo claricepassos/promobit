@@ -64,7 +64,7 @@ Este é um projeto Front-end, desenvolvido no bootcamp da Labenu, cujo o princip
 - Pesquisa por checkbox
 
 ![image](![image](https://user-images.githubusercontent.com/85196359/157344670-25719506-57e5-4757-8db1-dfe0447e8baa.png)
-)
+
 
 ![image](https://user-images.githubusercontent.com/85196359/155611866-2b8fba38-67c6-4c94-88fc-7597508a33a9.png)
 
