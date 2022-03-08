@@ -5,26 +5,29 @@ const CheckBoxContainer = styled.div`
     padding: 5px;
     margin: 5px;
     border-radius: 5px;
-    box-shadow: 3px 1px 1px rgba(100, 100, 255, .5);
-    display: inline-block;
+    box-shadow: 3px 1px 1px black;
+   display: inline-block;
     >label,input {
         &:hover {
             cursor: pointer;
             transform: scale(1.05);
         }
-    }
+    };
+    background-color: ${props => props.checked ? '#97C160' : '#E5E5E5'};
 `;
 
 const Container = styled.div`
     display: grid;
     padding: 10px;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(7, 1fr);
+    justify-content: center;
 `;
 
 export const GenresCheckboxes = ({ genres, onChange }) => {
 
     const onCheckboxChange = (e) => {
         onChange(e.target.value);
+        console.log(e.target.value)
     }
 
     return (

@@ -19,6 +19,10 @@ img{height: 300px;
     width: fit-content;
     margin-right: auto;
 margin-left: auto;
+};
+>span {
+    display: inline-block;
+    font-weight: 400 ;
 }
 `
 const Title = styled.div`
@@ -42,13 +46,17 @@ box-sizing: border-box;
 `
 
 const Button = styled.button`
+  /* Adapt the colors based on primary prop */
+  background: ${props => props.primary ? "palevioletred" : "white"};
+  color: ${props => props.primary ? "white" : "palevioletred"};
+
   font-size: 1em;
   margin: 1em;
   padding: 0.25em 1em;
+  border: 2px solid palevioletred;
   border-radius: 3px;
-  color: #1F1D36;
-  border: 2px solid black;
 `
+
 
 export const GetMoviesById = () => {
     const params = useParams()
@@ -85,7 +93,7 @@ export const GetMoviesById = () => {
     const movieGenres = movieDetail.genres
 
     const renderMovieGenres = movieGenres && movieGenres.map((i) => {
-        return (<div key={i.id}>{i.name}</div>)
+        return (<li key={i.id}> {i.name} </li>)
     })
 
     const convertedTime = () => {
@@ -102,7 +110,7 @@ export const GetMoviesById = () => {
                 <img src={`https://image.tmdb.org/t/p/w500/${movieDetail.poster_path}`} />
                 <Title><b>{movieDetail.title}</b></Title>
                 <div><b>Budget: </b>US$ {movieBudget}</div>
-                {renderMovieGenres && <div><b>Movie Genres:</b> {renderMovieGenres[0]} {renderMovieGenres[1]} {renderMovieGenres[2]}</div>}
+                {renderMovieGenres && <span><b>Movie Genres:</b> {renderMovieGenres[0]} {renderMovieGenres[1]} {renderMovieGenres[2]}</span>}
                 <Detail><b>Movie Detail:</b>{movieDetail.overview}</Detail>
                 <div><b>Status:</b>{movieDetail.status}</div>
                 <div><b>Tagline:</b>{movieDetail.tagline}</div>

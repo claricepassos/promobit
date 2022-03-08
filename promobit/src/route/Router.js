@@ -1,7 +1,6 @@
 import { GetAllMovies } from "../pages/GetallMovies"
 import { GetMoviesById } from "../pages/GetMoviesById"
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { GetMovieList } from "../pages/GetMovieList";
 
 
 export const Router = () => {
@@ -11,10 +10,6 @@ export const Router = () => {
 
   <Route exact path={"/"}>      
     <GetAllMovies />
-  </Route>
-
-  <Route exact path={"/movies/list"}>
-    <GetMovieList />
   </Route>
 
   <Route exact path={"/movies/:id"}>
