@@ -63,7 +63,8 @@ Este é um projeto Front-end, desenvolvido no bootcamp da Labenu, cujo o princip
 - Detalhes filmes
 - Pesquisa por checkbox
 
-![image](https://user-images.githubusercontent.com/85196359/155611837-4213b525-46c9-408a-ab82-97f781e4724d.png)
+![image](![image](https://user-images.githubusercontent.com/85196359/157344670-25719506-57e5-4757-8db1-dfe0447e8baa.png)
+)
 
 ![image](https://user-images.githubusercontent.com/85196359/155611866-2b8fba38-67c6-4c94-88fc-7597508a33a9.png)
 
@@ -72,7 +73,7 @@ Este é um projeto Front-end, desenvolvido no bootcamp da Labenu, cujo o princip
 
 ## 🔗Link para Acessar
 
-- **Link do Surge:** https://imported-burst.surge.sh/movies
+- **Link do Surge:** breezy-point.surge.sh
 
 
 ## 🛰Rodando o Projeto
